@@ -18,3 +18,10 @@ spec:
           imagePullPolicy: Never
           ports:
             - containerPort: 8000
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8000
+            periodSeconds: 1
+            failureThreshold: 1
+            successThreshold: 1
