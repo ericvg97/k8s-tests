@@ -6,4 +6,5 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "fastapi>=0.136.1",
+    "kubernetes>=35.0.0",
 ]

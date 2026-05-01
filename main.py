@@ -17,7 +17,7 @@ async def root():
     if requests_being_processed >= 1:
         return JSONResponse(status_code=503, content={"status": "busy"})
     requests_being_processed += 1
-    await asyncio.sleep(10)
+    await asyncio.sleep(15)
 
     requests_being_processed -= 1
 
