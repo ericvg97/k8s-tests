@@ -11,6 +11,9 @@ rules:
   - apiGroups: [""]
     resources: ["pods"]
     verbs: ["list"]
+  - apiGroups: ["apps"]
+    resources: ["deployments/scale"]
+    verbs: ["get", "patch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -30,6 +33,8 @@ metadata:
   name: k8s-tests-cron
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       app: k8s-tests-cron
