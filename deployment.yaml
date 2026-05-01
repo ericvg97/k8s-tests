@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: k8s-tests
-          image: k8s-tests:latest
+          image: k8s-tests:${IMAGE_TAG}
           imagePullPolicy: Never
           ports:
             - containerPort: 8000

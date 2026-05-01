@@ -1,5 +1,15 @@
-build:
-	docker build -t k8s-tests .
+deploy:
+	$(eval IMAGE_TAG := $(shell date +%s))
+	docker build -t k8s-tests:$(IMAGE_TAG) .
+	minikube image load k8s-tests:$(IMAGE_TAG)
+	IMAGE_TAG=$(IMAGE_TAG) envsubst < deployment.yaml | kubectl apply -f -
 
-run:
-	docker run -p 8000:8000 k8s-tests
+pods:
+	kubectl get pods
+
+deploy-service:
+	kubectl apply -f service.yaml
+
+forward:
+	kubectl port-forward service/k8s-tests 8000:8000
+
