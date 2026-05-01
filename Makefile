@@ -10,6 +10,9 @@ pods:
 deploy-service:
 	kubectl apply -f service.yaml
 
-forward:
-	kubectl port-forward service/k8s-tests 8000:8000
+# forward:#
+# 	kubectl port-forward service/k8s-tests 8000:8000
+
+url:
+	minikube service k8s-tests --url
 
