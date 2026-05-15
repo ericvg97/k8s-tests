@@ -1,0 +1,25 @@
+apiVersion: agones.dev/v1
+kind: Fleet
+metadata:
+  name: k8s-tests
+spec:
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: k8s-tests
+    spec:
+      ports:
+        - name: default
+          containerPort: 8000
+          protocol: TCP
+      template:
+        spec:
+          containers:
+            - name: k8s-tests
+              image: k8s-tests:${IMAGE_TAG}
+              imagePullPolicy: Never

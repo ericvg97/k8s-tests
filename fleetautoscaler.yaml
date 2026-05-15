@@ -1,0 +1,12 @@
+apiVersion: autoscaling.agones.dev/v1
+kind: FleetAutoscaler
+metadata:
+  name: k8s-tests
+spec:
+  fleetName: k8s-tests
+  policy:
+    type: Buffer
+    buffer:
+      bufferSize: 5
+      minReplicas: 5
+      maxReplicas: 20
